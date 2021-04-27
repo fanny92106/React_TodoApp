@@ -4,11 +4,14 @@ import Item from '../Item'
 
 export default class List extends Component {
     render() {
+        const {todos} = this.props
         return (
-            <ul>
-                <Item />
-                <Item />
-                <Item />
+            <ul style={{listStyle: 'none', marginLeft: -50}}>
+                {
+                todos.map(todo => {
+                    return <Item key={todo.id} {...todo}/>
+                })
+                }
             </ul>
         )
     }
