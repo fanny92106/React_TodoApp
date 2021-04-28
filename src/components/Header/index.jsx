@@ -12,7 +12,7 @@ export default class Header extends Component {
             return
         }
         const dataObj = {id:nanoid(), name: target.value, done: false}
-        this.props.getDataFromHeader(dataObj)
+        this.props.addTodo(dataObj)
         target.value = ''
     }
 

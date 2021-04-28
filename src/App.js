@@ -13,9 +13,18 @@ export default class App extends Component{
       {id: '003', name:'code', done:false}
     ]}
 
-  getDataFromHeader = (dataObj) => {
+  addTodo = (dataObj) => {
     const {todos} = this.state
     this.setState({todos: [dataObj, ...todos]})
+  }
+
+  updateTodo = (id, done) => {
+    const {todos} = this.state
+    const newTodos = todos.map((todoObj) => {
+      if(todoObj.id === id) return  {...todoObj, done}
+      else return todoObj
+    })
+    this.setState({todos: newTodos})
   }
 
   render() {
@@ -26,8 +35,8 @@ export default class App extends Component{
           <img src={logo} className="App-logo" alt="logo" />
           <div className="MyTodoApp">
             {/* pass getDataFromHeader() to <Header /> */}
-            <Header getDataFromHeader={this.getDataFromHeader}/>
-            <List todos={todos}/>
+            <Header addTodo={this.addTodo}/>
+            <List todos={todos} updateTodo = {this.updateTodo}/>
             <Footer />
 
           </div>
